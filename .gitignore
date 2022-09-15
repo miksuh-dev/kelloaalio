@@ -1,0 +1,7 @@
+node_modules
+.env
+drunk_record.sqlite
+dist
+logs
+time-storage.db
+time-storage.db-journal
