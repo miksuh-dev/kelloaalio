@@ -104,3 +104,20 @@ export enum TEXT_INPUT_STYLE {
   SHORT = 1,
   PARAGRAPH = 2,
 }
+
+export enum PRIVACY_LEVEL {
+  GUILD_ONLY = 2,
+}
+
+export enum EVENT_STATUS {
+  SCHEDULED = 1,
+  ACTIVE = 2,
+  COMPLETED = 3,
+  CANCELED = 4,
+}
+
+export enum EVENT_ENTITY_TYPE {
+  STAGE_INSTANCE = 1,
+  VOICE = 2,
+  EXTERNAL = 3,
+}

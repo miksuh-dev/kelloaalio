@@ -9,6 +9,9 @@ import {
   MESSAGE_COMPONENT_TYPE,
   BUTTON_STYLE,
   TEXT_INPUT_STYLE,
+  PRIVACY_LEVEL,
+  EVENT_STATUS,
+  EVENT_ENTITY_TYPE,
 } from "enum";
 
 export interface Interaction {
@@ -191,7 +194,7 @@ interface DiscordUser {
   public_flags?: number;
 }
 
-interface Message {
+export interface Message {
   id: string;
   channel_id: string;
   author: DiscordUser;
@@ -556,4 +559,42 @@ export interface DiscordError {
   code: number;
   errors?: [key: string, value: object][];
   message: string;
+}
+
+interface EntityMetadata {
+  location: string;
+}
+
+export interface GuildEvent {
+  id: string;
+  guild_id: string;
+  channel_id?: string;
+  creator_id?: string;
+  name: string;
+  description: string;
+  scheduled_start_time: string;
+  scheduled_end_time: string;
+  privacy_level: PRIVACY_LEVEL;
+  status: EVENT_STATUS;
+  entity_type: EVENT_ENTITY_TYPE;
+  entity_id: string;
+  entity_metadata: EntityMetadata;
+  creator: DiscordUser;
+  user_count?: number;
+  image?: string;
+}
+
+export interface CreateMessage {
+  content?: string;
+  nonce?: number | string;
+  tts?: boolean;
+  embed?: Embed[];
+  allowed_mentions?: AllowedMentions;
+  message_reference?: MessageReference;
+  components?: Component[];
+  sticker_ids?: string[];
+  // files?: File[];
+  payload_json?: string;
+  attachments?: Attachment[];
+  flags?: number;
 }
