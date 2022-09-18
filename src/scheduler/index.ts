@@ -49,10 +49,7 @@ const getEventScheduledTimes = (event: GuildEvent) => {
   const eventTime = DateTime.fromISO(event.scheduled_start_time);
 
   return [
-    eventTime.minus({ minute: 1 }),
-    eventTime.minus({ minute: 2 }),
-    eventTime.minus({ minute: 3 }),
-    // eventTime.minus({ hours: 1 }),
+    eventTime.minus({ hours: 1 }),
     eventTime.minus({ days: 1 }),
     eventTime.minus({ weeks: 1 }),
     eventTime.minus({ months: 1 }),
