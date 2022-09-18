@@ -3,7 +3,7 @@ import winston from "winston";
 import "winston-daily-rotate-file";
 
 const transport = new winston.transports.DailyRotateFile({
-  filename: "logs/aika-aalio-%DATE%.log",
+  filename: "logs/kelloaalio-%DATE%.log",
   datePattern: "DD-MM-YYYY",
   zippedArchive: true,
 });
