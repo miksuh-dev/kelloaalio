@@ -24,7 +24,7 @@ export default {
     toggleScheduler: {
       command: "ilmoitukset",
       description: "Aseta ilmoitukset päälle tai pois päältä",
-      on: "päällä",
+      on: "päälle",
       onDescription: "Aseta ilmoitukset käyttöön",
       off: "pois",
       offDescription: "Poista ilmoitukset käytöstä",
