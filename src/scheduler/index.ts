@@ -20,8 +20,7 @@ const activeJobs = new Map<string, EventJob>();
 type Guild = Awaited<ReturnType<typeof getActiveGuilds>>[0];
 type EventScheduledTimes = ReturnType<typeof getEventScheduledTimes>;
 
-const GLOBAL_UPDATE_DELAY = "*/5 * * * * *";
-// const GLOBAL_UPDATE_DELAY = "0 */12 * * *";
+const GLOBAL_UPDATE_DELAY = "0 */12 * * *";
 
 const getEventLink = (event: GuildEvent, guild: Guild) =>
   `<https://discord.com/events/${guild.id}/${event.id}>`;
@@ -190,8 +189,6 @@ const start = () => {
       Promise.all(guilds.map(updateGuildSchedulers)).catch((error) => {
         console.log("error jobs", error);
       });
-
-      mainJob.stop();
     })();
   });
 
