@@ -11,10 +11,25 @@ export default {
     days: "päivää",
     inYear: (years: string) => `vuosi ${years}`,
   },
+  scheduler: {
+    eventStarted: "Tapahtuma alkaa nyt!",
+    eventNotify: (timeString: string) =>
+      `Tapahtuma alkaa ${timeString} kuluttua.`,
+    hour: "tunnin",
+    day: "päivän",
+    week: "viikon",
+    month: "kuukauden",
+  },
   command: {
-    targetChannel: {
-      command: "kohde",
-      description: "Aseta kohde kanava, johon muistutukset lähetetään",
+    toggleScheduler: {
+      command: "ilmoitukset",
+      description: "Aseta ilmoitukset päälle tai pois päältä",
+      on: "päällä",
+      onDescription: "Aseta ilmoitukset käyttöön",
+      off: "pois",
+      offDescription: "Poista ilmoitukset käytöstä",
+      successOn: "Ilmoitukset asetettu päälle ja ne ohjataan tälle kanavalle.",
+      successOff: "Ilmoitukset ovat nyt pois käytöstä.",
     },
   },
 };
