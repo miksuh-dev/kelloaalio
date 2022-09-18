@@ -36,7 +36,9 @@ const createOrUpdateEventScheduler = (event: GuildEvent, guild: Guild) => {
     eventJob.jobs.forEach((job) => job.stop());
     activeJobs.delete(event.id);
 
-    logger.info(`Stopped all jobs for event ${event.id}}`);
+    logger.info(
+      `Event updated... Recreating event, stopped all jobs for event ${event.id}}`,
+    );
 
     createJobs(guild, event);
     return;
