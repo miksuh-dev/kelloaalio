@@ -35,6 +35,7 @@ const handleSchedulerOff = async (
   if (!channel_id) throw new Error("No channel id");
 
   await setGuildTargetChannel(guild_id, null);
+  // TODO Make this also cancel all currently scheduled jobs
 
   return {
     type: INTERACTION_RESPONSE_TYPE.CHANNEL_MESSAGE_WITH_SOURCE,
