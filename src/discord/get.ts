@@ -1,5 +1,5 @@
 import logger from "logger";
-import { ApplicationCommand, Guild } from "type";
+import { ApplicationCommand, Guild, GuildEvent } from "type";
 import { DiscordRequest } from "utils";
 
 export const getGlobalCommands = async () => {
@@ -30,5 +30,32 @@ export async function getGuildInfo(guildId: string) {
     logger.error(err);
 
     return null;
+  }
+}
+
+export async function getGuildScheduledEvent(guildId: string, eventId: string) {
+  const endpoint = `guilds/${guildId}/scheduled-events/${eventId}
+`;
+  try {
+    const res = await DiscordRequest(endpoint, { method: "GET" });
+
+    return (await res.json()) as GuildEvent;
+  } catch (err) {
+    logger.error(err);
+
+    return null;
+  }
+}
+
+export async function getGuildScheduledEvents(guildId: string) {
+  const endpoint = `guilds/${guildId}/scheduled-events`;
+  try {
+    const res = await DiscordRequest(endpoint, { method: "GET" });
+
+    return (await res.json()) as GuildEvent[];
+  } catch (err) {
+    logger.error(err);
+
+    throw err;
   }
 }

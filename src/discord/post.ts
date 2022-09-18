@@ -1,5 +1,5 @@
 import logger from "logger";
-import { ApplicationCommand } from "type";
+import { ApplicationCommand, CreateMessage, Message } from "type";
 import { DiscordRequest } from "utils";
 
 // Installs a command
@@ -42,3 +42,22 @@ export async function addGlobalCommand(
     logger.error(err);
   }
 }
+
+export const createMessage = async (
+  channelId: string,
+  message: CreateMessage,
+): Promise<Message> => {
+  if (!process.env.APP_ID) {
+    throw new Error("APP_ID is not set");
+  }
+  const endpoint = `channels/${channelId}/messages`;
+  const res = await DiscordRequest(endpoint, {
+    method: "POST",
+    body: JSON.stringify(message),
+  });
+
+  const response = (await res.json()) as Message;
+  logger.info("Create message", { response });
+
+  return response;
+};
