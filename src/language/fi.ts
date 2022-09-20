@@ -45,7 +45,7 @@ export default {
         error: `Virheellinen aika. Käytä muotoa ${italic("2w 4d 3h 30m 5s")}`,
         errorFuture: "Et voi asettaa muistutusta noin kauas tulevaisuuteen",
         notify: (user: string, message: string) =>
-          `${user}: Muistutus: ${message}`,
+          `${user} Muistutus: ${message}`,
         option: {
           time: {
             name: "aika",
@@ -70,7 +70,7 @@ export default {
         errorPast: "Päivämäärä tai aika on menneisyydessä.",
         errorFuture: "Et voi asettaa muistutusta noin kauas tulevaisuuteen",
         notify: (user: string, message: string) =>
-          `${user}: Muistutus: ${message}`,
+          `${user} Muistutus: ${message}`,
         option: {
           time: {
             name: "aika",
