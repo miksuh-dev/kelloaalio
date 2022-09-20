@@ -75,7 +75,7 @@ export default {
           time: {
             name: "aika",
             description:
-              "Aika, jolloin kuluttua muistutus lähetetään, 20.09.2022 19:23",
+              "Aika, jolloin muistutus lähetetään, esim 20.09.2022 19:23",
           },
           message: {
             name: "viesti",
