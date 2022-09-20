@@ -1,6 +1,6 @@
 import { setGuildTargetChannel } from "db/update";
 import { INTERACTION_TYPE, INTERACTION_RESPONSE_TYPE } from "enum";
-import scheduler from "scheduler";
+import guildScheduler from "scheduler/guildEvent";
 import { ApplicationCommandInteraction, InteractionResponse } from "type";
 import { getTranslations } from "../../language";
 import command from "./command";
@@ -16,7 +16,7 @@ const handleSchedulerOn = async (
 
   const guild = await setGuildTargetChannel(guild_id, channel_id);
 
-  await scheduler.updateGuildSchedulers(guild);
+  await guildScheduler.updateGuildSchedulers(guild);
 
   return {
     type: INTERACTION_RESPONSE_TYPE.CHANNEL_MESSAGE_WITH_SOURCE,
