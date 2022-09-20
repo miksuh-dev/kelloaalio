@@ -183,15 +183,20 @@ const updateGuildSchedulers = async (guild: Guild) => {
 const start = () => {
   const mainJob = new CronJob(GLOBAL_UPDATE_DELAY, () => {
     void (async () => {
-      const guilds = await getActiveGuilds();
+      try {
+        const guilds = await getActiveGuilds();
 
-      Promise.all(guilds.map(updateGuildSchedulers)).catch((error) => {
-        console.log("error jobs", error);
-      });
+        await Promise.all(guilds.map(updateGuildSchedulers));
+      } catch (error) {
+        logger.error(error);
+      }
     })();
   });
 
   mainJob.start();
 };
 
-export default { start, updateGuildSchedulers };
+export default {
+  start,
+  updateGuildSchedulers,
+};

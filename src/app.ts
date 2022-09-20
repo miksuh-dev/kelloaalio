@@ -5,7 +5,8 @@ import { INTERACTION_RESPONSE_TYPE, INTERACTION_TYPE } from "enum";
 import logger from "logger";
 import { ApplicationCommandInteraction, Interaction } from "type";
 import { loadCommands, handleCommand } from "./commands";
-import scheduler from "./scheduler";
+import guildScheduler from "./scheduler/guildEvent";
+import userScheduler from "./scheduler/userEvent";
 import { VerifyDiscordRequest } from "./utils";
 
 // TODO: This is hardcoded for now.
@@ -67,5 +68,7 @@ app.post("/interactions", (req, res): void => {
 app.listen(PORT, () => {
   if (!process.env.APP_ID) throw new Error("APP_ID is not set");
   loadCommands();
-  scheduler.start();
+
+  guildScheduler.start();
+  userScheduler.start();
 });

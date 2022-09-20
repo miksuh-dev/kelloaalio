@@ -16,3 +16,12 @@ model Guild {
   createdAt      DateTime         @default(now())
   target_channel String?
 }
+
+model UserEvent {
+   id        Int       @id @default(autoincrement())
+  user_id   String
+  event_time String
+  channel_id String
+  message   String
+  createdAt DateTime @default(now())
+}
