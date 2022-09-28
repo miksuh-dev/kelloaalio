@@ -2,17 +2,12 @@ import { installGlobalCommands } from "discord";
 import logger from "logger";
 import { ApplicationCommandInteraction, InteractionResponse } from "type";
 import * as targetChannel from "./targetChannel";
-// import * as toggleScheduler from "./toggleScheduler";
 import * as userSchedule from "./userSchedule";
 
 const handleCommand = (
   interaction: ApplicationCommandInteraction,
 ): Promise<InteractionResponse> => {
   const { name } = interaction.data;
-
-  // if (name === toggleScheduler.command.name) {
-  //   return toggleScheduler.handleCommand(interaction);
-  // }
 
   if (name === targetChannel.command.name) {
     return targetChannel.handleCommand(interaction);
@@ -26,11 +21,7 @@ const handleCommand = (
 };
 
 const loadCommands = () => {
-  const globalCommands = [
-    // toggleScheduler.command,
-    userSchedule.command,
-    targetChannel.command,
-  ];
+  const globalCommands = [userSchedule.command, targetChannel.command];
 
   installGlobalCommands(globalCommands).catch(logger.error);
 };
