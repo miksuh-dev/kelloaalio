@@ -10,6 +10,7 @@
     "build": "tsc",
     "test": "NODE_PATH=./src jest",
     "start:prod": "NODE_PATH=./dist NODE_ENV=production node dist/app.js",
+    "postinstall": "npx prisma generate",
     "prepare": "husky install",
     "release": "standard-version"
   },
