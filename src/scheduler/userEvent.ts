@@ -16,7 +16,7 @@ const createUserScheduledEvent = (userEvent: UserEvent) => {
   const cronJob = new CronJob(
     eventTime.toJSDate(),
     () => {
-      const content = translations.command.userSchedule.dateTime.notify(
+      const content = translations.command.userSchedule.set.dateTime.notify(
         `<@${userEvent.user_id}>`,
         userEvent.message,
       );
@@ -38,6 +38,18 @@ const createUserScheduledEvent = (userEvent: UserEvent) => {
   );
 };
 
+const cancelUserScheduledEvent = (userEvent: UserEvent) => {
+  const cronJob = userScheduledEvents.get(userEvent.id);
+  if (!cronJob) throw new Error(`No cron job found ${userEvent.id}`);
+
+  cronJob.stop();
+  userScheduledEvents.delete(userEvent.id);
+
+  logger.info(
+    `Canceled user scheduled event ${userEvent.id} to ${userEvent.channel_id} at ${userEvent.event_time}`,
+  );
+};
+
 const start = () => {
   void (async () => {
     try {
@@ -56,4 +68,4 @@ const start = () => {
   })();
 };
 
-export default { start, createUserScheduledEvent };
+export default { start, createUserScheduledEvent, cancelUserScheduledEvent };
