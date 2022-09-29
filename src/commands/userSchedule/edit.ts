@@ -5,7 +5,7 @@ import { ApplicationCommandInteraction } from "type";
 import { getTranslations } from "../../language";
 import {
   getUserFutureEvent,
-  getDateTimeFromString,
+  getTimeFromString,
   isTooFarInFuture,
   modifyUserScheduledMessage,
 } from "./utils";
@@ -30,14 +30,12 @@ export const handleEdit = async (
 
   const time = options?.find(
     (option) =>
-      option.name ===
-      translations.command.userSchedule.set.dateTime.option.time.name,
+      option.name === translations.command.userSchedule.set.option.time.name,
   )?.value as string;
 
   const message = options?.find(
     (option) =>
-      option.name ===
-      translations.command.userSchedule.set.dateTime.option.message.name,
+      option.name === translations.command.userSchedule.set.option.message.name,
   )?.value as string;
 
   if (!id) throw new Error("No id");
@@ -54,12 +52,12 @@ export const handleEdit = async (
     };
   }
 
-  const parsedTime = getDateTimeFromString(time);
+  const parsedTime = getTimeFromString(time);
   if (!parsedTime) {
     return {
       type: INTERACTION_RESPONSE_TYPE.CHANNEL_MESSAGE_WITH_SOURCE,
       data: {
-        content: translations.command.userSchedule.set.dateTime.error,
+        content: translations.command.userSchedule.set.error,
       },
     };
   }
@@ -68,7 +66,7 @@ export const handleEdit = async (
     return {
       type: INTERACTION_RESPONSE_TYPE.CHANNEL_MESSAGE_WITH_SOURCE,
       data: {
-        content: translations.command.userSchedule.set.dateTime.errorPast,
+        content: translations.command.userSchedule.set.errorPast,
       },
     };
   }
@@ -77,7 +75,7 @@ export const handleEdit = async (
     return {
       type: INTERACTION_RESPONSE_TYPE.CHANNEL_MESSAGE_WITH_SOURCE,
       data: {
-        content: translations.command.userSchedule.set.timer.errorFuture,
+        content: translations.command.userSchedule.set.errorFuture,
       },
     };
   }

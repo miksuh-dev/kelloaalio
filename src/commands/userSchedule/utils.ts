@@ -5,39 +5,69 @@ export const isTooFarInFuture = (dateTime: DateTime) => {
   return dateTime.diff(DateTime.utc(), ["days"]).days > 365;
 };
 
-export const getDateTimeFromString = (time: string) => {
-  const first = DateTime.fromFormat(time, "dd.L.yyyy HH:mm", {
-    zone: "Europe/Helsinki",
-  });
-  if (first.isValid) return first;
+const getTimerFromString = (time: string) => {
+  const splitted = time.split(" ");
 
-  const second = DateTime.fromFormat(time, "dd.LL.yyyy HH:mm", {
-    zone: "Europe/Helsinki",
-  });
-  if (second.isValid) return second;
+  const second = getUnit(splitted, ["seconds", "second", "s"]);
+  const minute = getUnit(splitted, ["minutes", "minute", "min", "m"]);
+  const hour = getUnit(splitted, ["hours", "hour", "h"]);
+  const day = getUnit(splitted, ["days", "day", "d"]);
+  const week = getUnit(splitted, ["week", "weeks", "w"]);
 
-  const third = DateTime.fromFormat(time, "HH:mm", {
-    zone: "Europe/Helsinki",
-  });
-  if (third.isValid) return third;
+  if (second > 60) return null;
+  if (minute > 60) return null;
+  if (hour > 24) return null;
+
+  try {
+    const dateTime = DateTime.utc()
+      .plus({
+        seconds: second,
+        minutes: minute,
+        hours: hour,
+        days: day,
+        weeks: week,
+      })
+      .setZone("Europe/Helsinki");
+
+    if (dateTime.isValid) {
+      return dateTime;
+    }
+  } catch (e) {}
 
   return null;
 };
 
-export const addUserScheduledMessage = (
-  user_id: string,
-  channel_id: string,
-  eventTime: string,
-  message: string,
-) =>
-  prisma.userEvent.create({
-    data: {
-      user_id,
-      channel_id,
-      event_time: eventTime,
-      message,
-    },
-  });
+const getUnit = (timeArray: string[], units: string[]) => {
+  const found = timeArray.find((time) =>
+    units.some((unit) => time.endsWith(unit)),
+  );
+  if (!found) return 0;
+
+  const unit = units.find((u) => found.endsWith(u));
+  if (!unit) return 0;
+
+  return parseInt(found.replace(unit, ""));
+};
+
+export const getTimeFromString = (time: string) => {
+  const formats = ["dd.L.yyyy HH:mm", "dd.LL.yyyy HH:mm", "HH:mm"];
+
+  try {
+    for (const format of formats) {
+      const dateTime = DateTime.fromFormat(time, format, {
+        zone: "Europe/Helsinki",
+      });
+
+      if (dateTime.isValid) {
+        return dateTime;
+      }
+    }
+  } catch (e) {
+    // do nothing
+  }
+
+  return getTimerFromString(time);
+};
 
 export const modifyUserScheduledMessage = (
   id: number,

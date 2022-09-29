@@ -39,52 +39,27 @@ export default {
 
       set: {
         command: "aseta",
-        description: "Aseta muistutus",
-        timer: {
-          command: "laskuri",
-          description: "Aseta ajastettu muistutus tietyn ajan kuluttua",
-          success: (time: string, message: string) =>
-            `Muistutus asetettu ${time} kuluttua viestillä ${italic(message)}.`,
-          error: `Virheellinen aika. Käytä muotoa ${italic("2w 4d 3h 30m 5s")}`,
-          errorFuture: "Et voi asettaa muistutusta noin kauas tulevaisuuteen",
-          notify: (user: string, message: string) =>
-            `${user} Muistutus: ${message}`,
-          option: {
-            time: {
-              name: "aika",
-              description:
-                "Aika, jonka kuluttua muistutus lähetetään, esim 1h 30m",
-            },
-            message: {
-              name: "viesti",
-              description: "Viesti, joka lähetetään muistutuksessa",
-            },
+        description: "Aseta ajastettu muistutus tietyn ajan kuluttua",
+        success: (time: string, message: string) =>
+          `Muistutus asetettu ${time} kuluttua viestillä ${italic(message)}.`,
+        error: `Virheellinen aika. Syötä joko laskurina (esim: ${italic(
+          "2w 4d 3h 30m 5s",
+        )}), aikana (esim: ${italic("pp.kk.vvvv hh:mm")}) tai ${italic(
+          "hh:mm",
+        )} (samalle päivälle).`,
+        errorPast: "Aika ei voi olla menneisyydessä.",
+        errorFuture: "Et voi asettaa muistutusta noin kauas tulevaisuuteen",
+        notify: (user: string, message: string) =>
+          `${user} Muistutus: ${message}`,
+        option: {
+          time: {
+            name: "aika",
+            description:
+              "Aika, jonka kuluttua muistutus lähetetään, esim 1h 30m",
           },
-        },
-        dateTime: {
-          command: "aika",
-          description:
-            "Aseta ajastettu muistutus tiettyyn päivämäärään ja aikaan",
-          success: (time: string, message: string) =>
-            `Muistutus asetettu aikaan ${time} viestillä ${italic(message)}.`,
-          error: `Virheellinen päivämäärä tai aika. Käytä muotoa ${italic(
-            "pp.kk.vvvv hh:mm",
-          )} tai ${italic("20.34")} (samalle päivälle).",
-          )}.`,
-          errorPast: "Päivämäärä tai aika on menneisyydessä.",
-          errorFuture: "Et voi asettaa muistutusta noin kauas tulevaisuuteen",
-          notify: (user: string, message: string) =>
-            `${user} Muistutus: ${message}`,
-          option: {
-            time: {
-              name: "aika",
-              description:
-                "Aika, jolloin muistutus lähetetään, esim 20.09.2022 19:23 tai 20:34 (samalle päivälle).",
-            },
-            message: {
-              name: "viesti",
-              description: "Viesti, joka lähetetään muistutuksessa",
-            },
+          message: {
+            name: "viesti",
+            description: "Viesti, joka lähetetään muistutuksessa",
           },
         },
       },

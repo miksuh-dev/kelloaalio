@@ -16,7 +16,7 @@ const createUserScheduledEvent = (userEvent: UserEvent) => {
   const cronJob = new CronJob(
     eventTime.toJSDate(),
     () => {
-      const content = translations.command.userSchedule.set.dateTime.notify(
+      const content = translations.command.userSchedule.set.notify(
         `<@${userEvent.user_id}>`,
         userEvent.message,
       );

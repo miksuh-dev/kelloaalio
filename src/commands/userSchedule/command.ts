@@ -10,57 +10,22 @@ const translations = getTranslations();
 const getToggleSchedulerChoices = (): ApplicationCommandOption[] => [
   {
     name: translations.command.userSchedule.set.command,
-    description: "Aseta muistutus",
-    type: APPLICATION_COMMAND_OPTION_TYPE.SUB_COMMAND_GROUP,
+    description: translations.command.userSchedule.set.description,
+    type: APPLICATION_COMMAND_OPTION_TYPE.SUB_COMMAND,
     options: [
       {
-        name: translations.command.userSchedule.set.timer.command,
-        description: translations.command.userSchedule.set.timer.description,
-        type: APPLICATION_COMMAND_OPTION_TYPE.SUB_COMMAND,
-        options: [
-          {
-            name: translations.command.userSchedule.set.timer.option.time.name,
-            description:
-              translations.command.userSchedule.set.timer.option.time
-                .description,
-            type: APPLICATION_COMMAND_OPTION_TYPE.STRING,
-            required: true,
-          },
-          {
-            name: translations.command.userSchedule.set.timer.option.message
-              .name,
-            description:
-              translations.command.userSchedule.set.timer.option.message
-                .description,
-            type: APPLICATION_COMMAND_OPTION_TYPE.STRING,
-            required: true,
-          },
-        ],
+        name: translations.command.userSchedule.set.option.time.name,
+        description:
+          translations.command.userSchedule.set.option.time.description,
+        type: APPLICATION_COMMAND_OPTION_TYPE.STRING,
+        required: true,
       },
       {
-        name: translations.command.userSchedule.set.dateTime.command,
-        description: translations.command.userSchedule.set.dateTime.description,
-        type: APPLICATION_COMMAND_OPTION_TYPE.SUB_COMMAND,
-        options: [
-          {
-            name: translations.command.userSchedule.set.dateTime.option.time
-              .name,
-            description:
-              translations.command.userSchedule.set.dateTime.option.time
-                .description,
-            type: APPLICATION_COMMAND_OPTION_TYPE.STRING,
-            required: true,
-          },
-          {
-            name: translations.command.userSchedule.set.dateTime.option.message
-              .name,
-            description:
-              translations.command.userSchedule.set.dateTime.option.message
-                .description,
-            type: APPLICATION_COMMAND_OPTION_TYPE.STRING,
-            required: true,
-          },
-        ],
+        name: translations.command.userSchedule.set.option.message.name,
+        description:
+          translations.command.userSchedule.set.option.message.description,
+        type: APPLICATION_COMMAND_OPTION_TYPE.STRING,
+        required: true,
       },
     ],
   },
@@ -78,17 +43,16 @@ const getToggleSchedulerChoices = (): ApplicationCommandOption[] => [
         autocomplete: true,
       },
       {
-        name: translations.command.userSchedule.set.timer.option.time.name,
+        name: translations.command.userSchedule.set.option.time.name,
         description:
-          translations.command.userSchedule.set.timer.option.time.description,
+          translations.command.userSchedule.set.option.time.description,
         type: APPLICATION_COMMAND_OPTION_TYPE.STRING,
         required: true,
       },
       {
-        name: translations.command.userSchedule.set.timer.option.message.name,
+        name: translations.command.userSchedule.set.option.message.name,
         description:
-          translations.command.userSchedule.set.timer.option.message
-            .description,
+          translations.command.userSchedule.set.option.message.description,
         type: APPLICATION_COMMAND_OPTION_TYPE.STRING,
         required: true,
       },

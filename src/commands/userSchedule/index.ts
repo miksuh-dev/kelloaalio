@@ -3,10 +3,9 @@ import { ApplicationCommandInteraction, InteractionResponse } from "type";
 import { getTranslations } from "../../language";
 import { handleAutoComplete } from "./autocomplete";
 import command from "./command";
-import { handleDateTime } from "./dateTime";
+import { handleCreate } from "./create";
 import { handleEdit } from "./edit";
 import { handleRemove } from "./remove";
-import { handleTimer } from "./timer";
 
 const translations = getTranslations();
 
@@ -15,25 +14,10 @@ const handleCommand = async (
 ): Promise<InteractionResponse> => {
   const { type, data } = interaction;
   const firstOption = data.options?.[0]?.name;
-  const secondOption = data.options?.[0]?.options?.[0]?.name;
 
   if (type === INTERACTION_TYPE.APPLICATION_COMMAND) {
-    // Add
     if (firstOption === translations.command.userSchedule.set.command) {
-      {
-        if (
-          secondOption === translations.command.userSchedule.set.timer.command
-        ) {
-          return handleTimer(interaction);
-        }
-
-        if (
-          secondOption ===
-          translations.command.userSchedule.set.dateTime.command
-        ) {
-          return handleDateTime(interaction);
-        }
-      }
+      return handleCreate(interaction);
     }
 
     if (firstOption === translations.command.userSchedule.edit.command) {
