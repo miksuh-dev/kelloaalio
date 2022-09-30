@@ -41,7 +41,7 @@ export default {
         command: "aseta",
         description: "Aseta ajastettu muistutus tietyn ajan kuluttua",
         success: (time: string, message: string) =>
-          `Muistutus asetettu ${time} kuluttua viestillä ${italic(message)}.`,
+          `Muistutus asetettu aikaan ${time} viestillä ${italic(message)}.`,
         error: `Virheellinen aika. Syötä joko laskurina (esim: ${italic(
           "2w 4d 3h 30m 5s",
         )}), aikana (esim: ${italic("pp.kk.vvvv hh:mm")}) tai ${italic(
