@@ -55,7 +55,7 @@ export default {
           time: {
             name: "aika",
             description:
-              "Aika, jonka kuluttua muistutus lähetetään, esim 1h 30m",
+              "Joko laskuri (esim. 1h 30m), tai päivämäärä (esim. 30.09.2022 19:20)",
           },
           message: {
             name: "viesti",
