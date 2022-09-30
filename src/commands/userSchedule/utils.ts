@@ -53,21 +53,22 @@ export const getTimeFromString = (time: string) => {
   const formats = [
     "d.L.yyyy HH:mm",
     "dd.L.yyyy HH:mm",
-    "d.L.yyyy HH:mm",
+    "d.LL.yyyy HH:mm",
     "dd.LL.yyyy HH:mm",
     "d.L.yyyy HH.mm",
     "dd.L.yyyy HH.mm",
-    "d.L.yyyy HH.mm",
+    "d.LL.yyyy HH.mm",
     "dd.LL.yyyy HH.mm",
     "d.L HH:mm",
     "dd.L HH:mm",
-    "d.L HH:mm",
+    "d.LL HH:mm",
     "dd.LL HH:mm",
     "d.L HH.mm",
     "dd.L HH.mm",
-    "d.L HH.mm",
+    "d.LL HH.mm",
     "dd.LL HH.mm",
     "HH:mm",
+    "HH.mm",
   ];
 
   try {
