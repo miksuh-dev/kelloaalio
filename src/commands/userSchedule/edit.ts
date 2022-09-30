@@ -62,7 +62,7 @@ export const handleEdit = async (
     };
   }
 
-  if (parsedTime < DateTime.now()) {
+  if (parsedTime <= DateTime.now()) {
     return {
       type: INTERACTION_RESPONSE_TYPE.CHANNEL_MESSAGE_WITH_SOURCE,
       data: {
