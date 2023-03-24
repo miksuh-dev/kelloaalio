@@ -29,7 +29,7 @@
     "luxon": "^2.5.2",
     "node-fetch": "^2.6.7",
     "sqlite": "^4.1.1",
-    "sqlite3": "^5.0.8",
+    "sqlite3": "^5.1.5",
     "winston": "^3.8.1",
     "winston-daily-rotate-file": "^4.7.1"
   },
