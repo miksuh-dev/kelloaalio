@@ -10,6 +10,7 @@
     "build": "tsc",
     "test": "NODE_PATH=./src jest",
     "start:prod": "NODE_PATH=./dist NODE_ENV=production node dist/app.js",
+    "start:pm2-prod": "npx pm2 start npm --name kelloaalio -- run start:prod",
     "postinstall": "npx prisma generate",
     "prepare": "husky install",
     "release": "standard-version"
